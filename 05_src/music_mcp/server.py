@@ -32,9 +32,9 @@ collection = chroma.get_collection(name="pitchfork_reviews",
 
 # Initialize MCP Server
 mcp = FastMCP(
-    name="music_server",
+    name="music_recommendation_server",
     instructions="""
-    This server provides music recommendations based on Pitchfork reviews.
+    This server provides album recommendations based on Pitchfork reviews.
     """
 )
 
@@ -42,19 +42,25 @@ class MusicReviewData(BaseModel):
     """Structured music review data response."""
     title: str = Field(..., description="The title of the album.")
     artist: str = Field(..., description="The artist of the album.")
-    review: str = Field(..., description="The review of the album.")
+    review: str = Field(..., description="A portion of the album review that is relevant to the user query.")
     year: int = Field(None, description="The release year of the album.")
-    score: float = Field(None, description="The Pitchfork score of the album. An album with a score of 6.5 and above is considered good. A score of 8.0 and above indicates a great album.")
+    score: float = Field(None, description="The Pitchfork score of the album. The score is numeric and its scale is from 0 to 10, with 10 being the highest rating. Any album with a score greater than 8.0 is considered a must-listen; album with a score greater than 6.5 is good.")
 
 
-@mcp.tool
-def music_review_service(query: str, n_results: int = 1) -> str:
+@mcp.tool(
+        name="recommend_albums",
+        description="Recommends albums based on user query by fetching relevant Pitchfork reviews.",
+
+
+)
+def recommend_albums(query: str, n_results: int = 1) -> list[MusicReviewData]:
     """Fetches music review data based on the query. Returns n_results reviews."""
-    response = generate_response(query, collection, n_results)
-    return response
+    recommendations = get_context(query, collection, n_results)
+    return recommendations
 
 
 def additional_details(review_id:str):
+    _logs.debug(f'Fetching additional details for review ID: {review_id}')
     engine = sa.create_engine(os.getenv("SQL_URL"))
     query = f"""
     SELECT r.reviewid,
@@ -79,6 +85,7 @@ def additional_details(review_id:str):
         }
         return details
     else:
+        _logs.warning(f'No details found for review ID: {review_id}')
         return {}
     
 def get_reviewid_from_custom_id(custom_id:str):
@@ -97,37 +104,28 @@ def get_context_data(query:str, collection:chromadb.api.models.Collection, top_n
         context_data.append(details)
     return context_data
 
-def generate_prompt(query:str, collection:chromadb.api.models.Collection, top_n:int):
-    context_data = get_context_data(query, collection, top_n)
-    prompt = f"Given a query, provide a detailed response using the context from relevant Pitchfork reviews. The context will contain references to {top_n} album reviews.\n\n"
-    prompt += f"The score is numeric and its scale is from 0 to 10, with 10 being the highest rating. Any album with a score greater than 8.0 is considered a must-listen; album with a score greater than 6.5 is good.\n\n"
-    prompt += f"<query>{query}</query>\n\n"
-    prompt += "<context>\n"
-    for k, context in enumerate(context_data):
-        prompt += f"<album {k}>\n"
-        prompt += f"- Album Title: {context.get('album', 'N/A')}\n" 
-        prompt += f"- Album Artist: {context.get('artist', 'N/A')}\n"
-        prompt += f"- Album Score: {context.get('score', 'N/A')}\n"
-        prompt += f"- Review Quote: {context.get('text', 'N/A')}\n"
-        prompt += f"</album {k}>\n\n"
-    prompt += "</context>\n\n"
-    prompt += "\nBased on the context and nothing else, provide a detailed response to the query."
-    return prompt
-
-def generate_response(query:str, collection:chromadb.api.models.Collection, top_n:int=1):
-    prompt = generate_prompt(query, collection, top_n)
-    print("Generated Prompt:\n", prompt)
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant that provides information based on Pitchfork reviews."},
-            {"role": "user", "content": prompt}
-        ],
-        max_tokens=500,
-        temperature=0.7
+def get_context(query:str, collection:chromadb.api.models.Collection, top_n:int):
+    # context_data = get_context_data(query, collection, top_n)
+    recommendations = []
+    # for item in context_data:
+    #     _logs.debug(f'Context item: {item.title} by {item.artist} with score {item.score}.')
+    #     # rec = MusicReviewData(
+        #     title=item.get('album', 'N/A'),
+        #     artist=item.get('artist', 'N/A'),
+        #     review=item.get('text', 'N/A'),
+        #     year=item.get('year', None),
+        #     score=item.get('score', None)
+        # )
+    rec = MusicReviewData(
+        title="Cri Cri",
+        artist="Gabilondo Soler",
+        review="A great album!",
+        year=1945,
+        score=8.5
     )
-    _logs.debug(f'Music review response: {response.choices[0].message.content}')
-    return response.choices[0].message.content
+    recommendations.append(rec)
+    return recommendations
+
 
 if __name__ == "__main__":
     listener = ngrok.forward("localhost:3000", authtoken_from_env=True,
