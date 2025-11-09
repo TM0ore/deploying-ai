@@ -51,17 +51,3 @@ def get_graph():
     graph = builder.compile()
     return graph
 
-
-if __name__ == "__main__":
-    _logs.info('Starting Course Chat tests.')
-    graph = get_graph()
-    messages = [
-        "Tell me something about cats.",
-        "What is a good trip-hop album?",
-        "Tell me two things about dogs."
-        "I am a Sagittarius, what is my horoscope for today?"
-    ]
-    for msg in messages:
-        response = graph.invoke(HumanMessage(content=msg))
-        _logs.info(f"User: {msg}")
-        _logs.info(f"AI: {response['messages'][-1].content}")
