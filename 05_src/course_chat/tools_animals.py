@@ -1,11 +1,6 @@
 from langchain.tools import tool
 import json
 import requests
-from utils.logger import get_logger
-import os
-
-
-_logs = get_logger(__name__)
 
 
 @tool

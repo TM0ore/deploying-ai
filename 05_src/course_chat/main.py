@@ -1,68 +1,44 @@
-from typing import Literal
-from langchain_mcp_adapters.client import MultiServerMCPClient
-from langgraph.graph import StateGraph, MessagesState, START, END
-from langchain_core.messages import HumanMessage
-
+from langgraph.graph import StateGraph, MessagesState, START
 from langchain.chat_models import init_chat_model
-from langchain.tools import tool
 from langgraph.prebuilt.tool_node import ToolNode, tools_condition
-from langchain_core.messages import AnyMessage, SystemMessage, ToolMessage
-from typing_extensions import TypedDict, Annotated
+from langchain_core.messages import SystemMessage,  HumanMessage
 
 from dotenv import load_dotenv
+import json
+import requests
+import os
 
+from course_chat.prompts import return_instructions
+from course_chat.tools_animals import get_cat_facts, get_dog_facts
+from course_chat.tools_horoscope import get_horoscope
+from course_chat.tools_music import recommend_albums
 from utils.logger import get_logger
 
 
 _logs = get_logger(__name__)
-
 load_dotenv(".env")
 load_dotenv(".secrets")
 
 
-model = init_chat_model(
-    "openai:gpt-4o-mini",
-    temperature=0.7
-)
-
-
-client = MultiServerMCPClient(
-    {
-        "music_server": {
-            # make sure you start your music server on port 8000
-            "url": "http://sciuroid-jackeline-overventurously.ngrok-free.dev/mcp",
-            "transport": "streamable_http",
-        }
-    }
-)
-async def get_tools_from_mcp_client(client: MultiServerMCPClient):
-    """Fetch tools from MCP client"""
-    tools = await client.get_tools()
-    return tools
-
-dev_prompt = """
-    You are a helpful assistant tasked with offering music recommendations. 
-    Use the music_server when a user asks for a recommendation. 
-    Respond with the tool's output directly.
-"""
-
-
 chat_agent = init_chat_model(
-    "openai:gpt-4o-mini"
+    "openai:gpt-4o-mini",
 )
+tools = [get_cat_facts, get_dog_facts, recommend_albums, get_horoscope]
+
+instructions = return_instructions()
+
+
 
 # @traceable(run_type="llm")
-async def call_model(state: MessagesState):
+def call_model(state: MessagesState):
     """LLM decides whether to call a tool or not"""
-    tools = await get_tools_from_mcp_client(client)
-    response = chat_agent.bind_tools(tools).invoke(state["messages"])
+    response = chat_agent.bind_tools(tools).invoke( [SystemMessage(content=instructions)] + state["messages"])
     return {
         "messages": [response]
     }
 
-
-async def get_graph():
-    tools = await get_tools_from_mcp_client(client)
+def get_graph():
+    
     builder = StateGraph(MessagesState)
     builder.add_node(call_model)
     builder.add_node(ToolNode(tools))
@@ -75,12 +51,17 @@ async def get_graph():
     graph = builder.compile()
     return graph
 
-async def run_graph():
-    graph = await get_graph()
-    response =  await graph.ainvoke({'messages': HumanMessage(content="what is a good album?")})
-    return response['messages']
 
 if __name__ == "__main__":
-    import asyncio
-    result = asyncio.run(run_graph())
-    print(result)
+    _logs.info('Starting Course Chat tests.')
+    graph = get_graph()
+    messages = [
+        "Tell me something about cats.",
+        "What is a good trip-hop album?",
+        "Tell me two things about dogs."
+        "I am a Sagittarius, what is my horoscope for today?"
+    ]
+    for msg in messages:
+        response = graph.invoke(HumanMessage(content=msg))
+        _logs.info(f"User: {msg}")
+        _logs.info(f"AI: {response['messages'][-1].content}")
