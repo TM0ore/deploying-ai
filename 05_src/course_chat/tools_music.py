@@ -27,7 +27,6 @@ class MusicReviewData(BaseModel):
     title: str = Field(..., description="The title of the album.")
     artist: str = Field(..., description="The artist of the album.")
     review: str = Field(..., description="A portion of the album review that is relevant to the user query.")
-    year: int = Field(None, description="The release year of the album.")
     score: float = Field(None, description="The Pitchfork score of the album. The score is numeric and its scale is from 0 to 10, with 10 being the highest rating. Any album with a score greater than 8.0 is considered a must-listen; album with a score greater than 6.5 is good.")
 
 
@@ -94,7 +93,6 @@ def get_context(query:str, collection:chromadb.api.models.Collection, top_n:int)
             title=item.get('album', 'N/A'),
             artist=item.get('artist', 'N/A'),
             review=item.get('text', 'N/A'),
-            year=item.get('year', 0),
             score=item.get('score', 0.0)
         )
         recommendations.append(rec)
