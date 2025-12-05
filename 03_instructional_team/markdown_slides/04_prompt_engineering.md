@@ -1,7 +1,6 @@
 ---
 marp: true
 theme: dsi_certificates_theme
-_class: invert
 paginate: true
 ---
 
@@ -60,7 +59,7 @@ $ echo "Data Sciences Institute"
 - It should be treated with the same rigor as any machine learning experiment.  
 - Effective prompt engineering requires communication skills and technical knowledge.
 
-![bg contain right:40%](./images/04_prompt_engineer.jpg)
+![bg right:40% w:400](./images/04_prompt_engineer.jpg)
 
 ---
 
@@ -620,7 +619,7 @@ I need to get my internet working again.
 - It significantly improves reasoning and reduces hallucinations  (Wei et al, 2022).
 - Variants include “think step by step” or “explain your decision”.
 
-![bg contain right:50%](./images/04_cot_performance.png)
+![bg right:50% w:300](./images/04_cot_performance.png)
 
 ---
 
@@ -951,9 +950,6 @@ Separating prompts from code is a good practice. Its advantages include:
 # References
 
 ---
-
-## References
-
 - Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022 
 -  Kadavath, S. et al. Language Models (Mostly) Know What They Know. [arXiv:2207.05221](https://arxiv.org/abs/2207.05221), 2022. 
 - Liu, Nelson F. et al. "Lost in the middle: How language models use long contexts." [arXiv:2307.03172](https://arxiv.org/abs/2307.03172), 2023.

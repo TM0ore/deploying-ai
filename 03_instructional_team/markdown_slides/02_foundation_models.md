@@ -1,7 +1,6 @@
 ---
 marp: true
 theme: dsi_certificates_theme
-_class: invert
 paginate: true
 ---
 
@@ -104,7 +103,7 @@ We will be covering Chapter 2 of AI Engineering, by Chip Huyen.
 
 ## Multilingual Models
 
-![bg right:40%](./images/02_languages_common_crawl.png)
+![bg right:40% w:400](./images/02_languages_common_crawl.png)
 
 + English accounts for almost half (45%) the data in the Common Crawl dataset, eight times more prevalent than Russion, the second most represented language. 
 + Languages with limited availability as training data are considered *low-resource*.
@@ -116,7 +115,7 @@ We will be covering Chapter 2 of AI Engineering, by Chip Huyen.
 
 ## GPT-4 Performance on MMLU Benchmark
 
-![contain bg right:50%](./images/02_gpt4_performance_languages.png)
+![bg right:50% w:500](./images/02_gpt4_performance_languages.png)
 
 + On the MMLU benchmark, GPT-4 performs better in English. The MMLU benchmakr.
 + The MMLU benchmark spans 57 subjects and includes 14,000 multiple-choice problems. (Huyen, 2025)
@@ -425,7 +424,7 @@ Llama 3-405B | 126| 16,384| 53,248| 128k | 128k
 ---
 
 ![](./images/02_compute_train.png)
-<center>Compute used to train machine-learning models (Jones, 2023)</center>
+Compute used to train machine-learning models (Jones, 2023)
 
 ---
  
@@ -880,8 +879,7 @@ Model inconsistencies happen in two scenarios:
 - Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022 
 - Baack, Stefan, and Mozilla Insights. "Training data for the price of a sandwich." Retrieved May 9 (2024): 2024. [(URL)](https://www.mozillafoundation.org/en/research/library/generative-ai-training-data/common-crawl/)
 - Hoffmann, Jordan, et al. "Training compute-optimal large language models." [arXiv:2203.15556](https://arxiv.org/abs/2203.15556) (2022).
-- Howard, Jeremy, and Sebastian Ruder. "Universal language model fine-tuning for text classification." [arXiv:1801.06146](https://arxiv.org/abs/1801.06146) (2018). 
-- Jones, Elliott. "Foundation models in the public sector." Ada Lovelace Institute, October. Accessed August 30,2025: 2023.
+
 
 ---
 
@@ -891,5 +889,13 @@ Model inconsistencies happen in two scenarios:
 - Ouyang, Long, et al. "Training language models to follow instructions with human feedback." Advances in neural information processing systems 35 (2022): 27730-27744. [(URL)](https://arxiv.org/abs/2203.02155)
 - Roose, Kevin. "Why an octopus-like creature has come to symbolize the state of AI." The New York Times (2023). [(URL)](https://www.nytimes.com/2023/05/30/technology/shoggoth-meme-ai.html)
 - Schaul, Kevin, et al. Inside the secret list of websites that make AI like ChatGPT sound smart. Washington Post: April 19, 2023 [(URL)](https://www.washingtonpost.com/technology/interactive/2023/ai-chatbot-learning/).
-- Tunstall, Lewis, Leandro Von Werra, and Thomas Wolf. Natural language processing with transformers. "O'Reilly Media, Inc.", 2022.
+
+
+---
+
+## References (cont.)
+
 - Vaswani, Ashish et al. "Attention is all you need." Advances in neural information processing systems 30.  [arXiv:1706.03762](https://arxiv.org/abs/1706.03762)(2017). 
+- Jones, Elliott. "Foundation models in the public sector." Ada Lovelace Institute, October. Accessed August 30,2025: 2023.
+- Tunstall, Lewis, Leandro Von Werra, and Thomas Wolf. Natural language processing with transformers. "O'Reilly Media, Inc.", 2022.
+- Howard, Jeremy, and Sebastian Ruder. "Universal language model fine-tuning for text classification." [arXiv:1801.06146](https://arxiv.org/abs/1801.06146) (2018). 

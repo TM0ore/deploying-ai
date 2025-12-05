@@ -1,7 +1,6 @@
 ---
 marp: true
 theme: dsi_certificates_theme
-_class: invert
 paginate: true
 ---
 
@@ -208,6 +207,10 @@ $ echo "Data Sciences Institute"
 
 + In many applications, one cannot access large amounts of labelled text data to train a model.
 + Transfer learning allows to apply the information learned from one task to another.
+---
+
+## Transfer Learning and Fine Tuning
+
 + ULMFit (Howard and Ruder, 2018) proposed the following process for transfer learning:
 
   - Body: (a) A network is trained on a general domain corpus. The weights of the body learn broad features of the source domain. (b) The full LM is fine-tuned on target task data using discriminative fine-tuning and slanted triangular learning rates (STLR).
