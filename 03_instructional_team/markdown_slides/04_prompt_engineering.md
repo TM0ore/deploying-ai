@@ -59,8 +59,6 @@ $ echo "Data Sciences Institute"
 - It should be treated with the same rigor as any machine learning experiment.  
 - Effective prompt engineering requires communication skills and technical knowledge.
 
-![bg right:40% w:400](./images/04_prompt_engineer.jpg)
-
 ---
 
 ## The Role of Prompt Engineering
