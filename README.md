@@ -30,40 +30,60 @@ The course has two components:
 The course is based on [Chip Huyen's book, AI Engineering](https://huyenchip.com/books/). We will cover the following areas:
 
 + **Part 1. Fundamentals.** The first part of the course will be devoted to building fundamental knowledge about AI models. We explore their evolution from Machine Learning system and highlight the differences between Machine Learning and the Foundation Models which lie behind most AI applications. 
+
   - **Introduction to AI Systems**
+    
     * What is an AI System?
     * Use cases and planning an AI application
     * The AI engineering Stack
+
   - **An overview of Foundation Models**
+    
     * From machine learning to foundation models via deep learning
     * Model architectures
     * Training, pre-training, post-training models
     * Sampling, hallucinations, and the probabilistic nature of AI
+  
   - **Model Evaluation and System Evaluation**
+  
     * Performance metrics
     * Exact evaluation and using AI as a judge
     * Designing an evaluation pipeline
+
 + **Part 2. Working with AI Systems.** Foundation models are expensive and, most of the time, are impractical to train by organizations and users. In the current state of engineering, the majority of AI applications will be built on pre-trained models. This portion of the course will cover the main techniques to build AI applications and systems.
+
   - **Prompt Engineering**
+
     * System vs user prompt, context length and context efficiency
     * Prompt engineering best practices
     * Defensive prompt engineering
+
   - **Retrieval Augmented Generation (RAG)**
+
     * RAG Architecture
     * Retrieval Algorithms and optimization
+
   - **Agents**
+
     * Planning
     * Interacting with APIs and MCP
     * Agent failure modes and evaluation
+
 - **Part 3. Optimization and System Design.** Enhancing AI systems can be achieved by finetuning them on specific tasks or to provide outputs that avoid undesired results. As well, good design practices can be used to reduce latency and cost and provide consistent experiences to users.
+
   - **Finetuning**
+
     * Finetuning overview
     * Finetuning techniques
+
   - **Data Engineering**
+
     * Data curation
     * Data augmentation and synthesis
     * Data processing
+
   - **Optimization and System Design**
+
     * Inference optimization
     * AI engineering architecture
     * User feedback
@@ -83,7 +103,7 @@ By the end of this module, participants will be able to:
 
 ## Contacts
 
-### SGS Doctoral Cohort
+### SGS Doctoral Certificate
 
 **Questions can be submitted to the _help_ channel on Slack**
 
@@ -104,22 +124,23 @@ Participants are encouraged to engage actively during the learning module. They 
 
 # Schedule
 
+## SGS Doctoral Certificate
+
 |Type |Date        |Topic                             |
 |-----|------------|----------------------------------|
-|Live| Oct. 21 | Introduction|
-|Live| Oct. 22 | Foundation Models |
-|Live| Oct. 23 | Evaluation |
-|Work| Oct. 24 | Work Period |
-|Live| Oct. 28 | Prompt Engineering |
-|Live| Oct. 29 | Retrieval Augmented Generation |
-|Live| Oct. 30 | Tools and Agents |
-|Work| Oct. 31 | Work Period |
-|Deadline| Nov. 3 (@3pm)| Assignment 1 Due |
-|Live| Nov. 4  | Fine Tuning |
-|Live| Nov. 5  | Dataset Engineering |
-|Live| Nov. 6  | Optimization |
-|Work| Nov. 7  | Work Period   |
-|Deadline| Nov. 10 (@3pm)| Assignment 2 Due |
+|Live| Feb. 02 | Introduction to Foundation Models|
+|Live| Feb. 05 | Evaluating Foundation Models |
+|Work| Feb. 06 | Work Period |
+|Live| Feb. 10 | Prompt Engineering |
+|Live| Feb. 12 | Retrieval Augmented Generation |
+|Work| Feb. 13 | Work Period |
+|Deadline| Feb. 3 | Assignment 1 Due |
+|Live| Feb. 17  | Fine Tuning |
+|Live| Feb. 19  | Dataset Engineering |
+|Work| Feb. 20  | Work Period   |
+|Deadline| Feb. 10 | Assignment 2 Due |
+|Live| Feb. 24  | System Optimization |
+|Work| Feb. 27  | Work Period   |
 
 ### Requirements
 * Participants are not expected to have any coding experience; the learning content has been designed for beginners.
