@@ -30,40 +30,40 @@ The course has two components:
 The course is based on [Chip Huyen's book, AI Engineering](https://huyenchip.com/books/). We will cover the following areas:
 
 + **Part 1. Fundamentals.** The first part of the course will be devoted to building fundamental knowledge about AI models. We explore their evolution from Machine Learning system and highlight the differences between Machine Learning and the Foundation Models which lie behind most AI applications. 
-  - **Session 1: Introduction to AI Systems**
+  - **Introduction to AI Systems**
     * What is an AI System?
     * Use cases and planning an AI application
     * The AI engineering Stack
-  - **Session 2: An overview of Foundation Models**
+  - **An overview of Foundation Models**
     * From machine learning to foundation models via deep learning
     * Model architectures
     * Training, pre-training, post-training models
     * Sampling, hallucinations, and the probabilistic nature of AI
-  - **Session 3: Model Evaluation and System Evaluation**
+  - **Model Evaluation and System Evaluation**
     * Performance metrics
     * Exact evaluation and using AI as a judge
     * Designing an evaluation pipeline
 + **Part 2. Working with AI Systems.** Foundation models are expensive and, most of the time, are impractical to train by organizations and users. In the current state of engineering, the majority of AI applications will be built on pre-trained models. This portion of the course will cover the main techniques to build AI applications and systems.
-  - **Session 4: Prompt Engineering**
+  - **Prompt Engineering**
     * System vs user prompt, context length and context efficiency
     * Prompt engineering best practices
     * Defensive prompt engineering
-  - **Session 5: Retrieval Augmented Generation (RAG)**
+  - **Retrieval Augmented Generation (RAG)**
     * RAG Architecture
     * Retrieval Algorithms and optimization
-  - **Session 6: Agents**
+  - **Agents**
     * Planning
     * Interacting with APIs and MCP
     * Agent failure modes and evaluation
 - **Part 3. Optimization and System Design.** Enhancing AI systems can be achieved by finetuning them on specific tasks or to provide outputs that avoid undesired results. As well, good design practices can be used to reduce latency and cost and provide consistent experiences to users.
-  - **Session 7: Finetuning**
+  - **Finetuning**
     * Finetuning overview
     * Finetuning techniques
-  - **Session 8: Data Engineering**
+  - **Data Engineering**
     * Data curation
     * Data augmentation and synthesis
     * Data processing
-  - **Session 9: Optimization and System Design**
+  - **Optimization and System Design**
     * Inference optimization
     * AI engineering architecture
     * User feedback
@@ -83,13 +83,17 @@ By the end of this module, participants will be able to:
 
 ## Contacts
 
+### SGS Doctoral Cohort
+
 **Questions can be submitted to the _help_ channel on Slack**
 
 * Technical Facilitator: 
   * [Jesús Calderón](https://www.linkedin.com/in/jcalderon/)
   
 * Learning Support: 
-  * [ Vishnou Vinayagame](https://www.linkedin.com/in/vinayagame-vishnou/) 
+  * [Dmytro Bonislavskyi](https://www.linkedin.com/in/dmytro-bonislavskyi/)
+  * [Sergii Khomych](https://www.linkedin.com/in/sergey-khomich-96350088/)
+  * [Néstor Rojas](https://www.linkedin.com/in/nestor-rojas-ai/)
   
 
 ## Delivery of the Learning Module
