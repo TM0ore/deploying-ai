@@ -66,7 +66,7 @@ We will be covering Chapter 1 of AI Engineering, by Chip Huyen.
 
 + It is a system that uses foundation models to perform tasks.
 + Many principles of productionizing AI applications are similar to those applied in machine learning engineering.
-+ The main difference between an AI and ML systems is that AI systems adapt a pre-trained, complex model to perform specific tasks, while ML systems train ML models to learn specific tasks.
++ The main difference between AI and ML systems is that AI systems adapt a pre-trained, complex model to perform specific tasks, while ML systems train ML models to learn specific tasks.
 + The availability of large-scale, readily available models affords new possibilities, and also carries risks and challenges.
 
 ---
@@ -136,7 +136,7 @@ We will be covering Chapter 1 of AI Engineering, by Chip Huyen.
 ## Types of Language Models
 
 
-There are two types of Language Models (LM): Autorregressive LM and Masked LM.
+There are two types of Language Models (LM): Autoregressive LM and Masked LM.
 
 ![height:200px center](./images/01_types_of_lm.png)
 
@@ -144,16 +144,16 @@ There are two types of Language Models (LM): Autorregressive LM and Masked LM.
 ## Masked Language Models
 
 + Masked language model: predicts missing tokens anywhere in a sequence using only the preceding tokens.
-+ Commonly used for non-generative tasks such as steniment analysis, text classification, and tasks that require an understanding of the general context (before and after the prediction), such as code debugging.
++ Commonly used for non-generative tasks such as sentiment analysis, text classification, and tasks that require an understanding of the general context (before and after the prediction), such as code debugging.
 + Example, BERT ([Devlin et al., 2018](https://arxiv.org/abs/1810.04805)).
 
 
 ---
 
-## Autorregressive Language Models
+## Autoregressive Language Models
 
-+ Autorregressive language model: trained to predict the next token in a sequence.
-+ Autorregressive LMs can continually generate one token after another and are the models of choice for text generation.
++ Autoregressive language model: trained to predict the next token in a sequence.
++ Autoregressive LMs can continually generate one token after another and are the models of choice for text generation.
 
 
 ---
@@ -189,7 +189,7 @@ Many tasks can be thought as completion: translation, summarization, coding, and
 + Why language models and not object detection, topic modelling, recommender systems, or any other machine learning task?
 + Any machine learning model requires supervision: the process of training a machine learning model using labelled data.
 + Supervision requires data labelling, and data labelling is expensive and time-consuming.
-+ Self-supervision: each input sequence provides both the labels and the contexts the model can use to predict these lables.
++ Self-supervision: each input sequence provides both the labels and the contexts the model can use to predict these labels.
 + Because text sequences are everywhere, massive training data sets can be constructed, allowing language models to become LLMs.
 
 ---
@@ -211,7 +211,7 @@ Input | Output (next token)
 
 + Foundation models: important models which serve as a basis for other applications.
 + Multi-modal model: a model that can work with more than one data modality (text, images, videos, protein structures, and so on.)
-+ Self-supervision works for fourndation models, too. For example, labeled images found on the internet.
++ Self-supervision works for foundation models, too. For example, labeled images found on the internet.
 + Foundation models transition from task-specific to general-purpose models.
 
 
@@ -300,7 +300,7 @@ Input | Output (next token)
 
   - AI shows several responses that human agents can reference to write faster responses.
   - AI responds only to simple requests and routes more complex requests to humans.
-  - AI responds to al requests directly, without human involvement.
+  - AI responds to all requests directly, without human involvement.
 
 - Involving humans in AI's decision-making process is called human-in-the-loop.
 
@@ -330,7 +330,7 @@ AI Deployment Strategies ([Guy, 2023](https://www.microsoft.com/en-us/industry/b
 + Three types of competitive advantages: technology, data, and distribution. 
 
   - Technology and distribution can be easily achieved by large organizations.
-  - Data competitive advantages are more naunced: large organizations can have large current data sets, but may lack data on emerging activities.
+  - Data competitive advantages are more nuanced: large organizations can have large current data sets, but may lack data on emerging activities.
 
 ---
 
@@ -356,7 +356,7 @@ To ensure a product is not put in front of users before it is ready:
 
 ---
 
-## Maintainance
+## Maintenance
 
 + Think about how the product will change over time.
 + Added challenge of rapid progress of AI itself.
@@ -374,8 +374,8 @@ To ensure a product is not put in front of users before it is ready:
 ## The AI engineering Stack
 
 + Three layers of the AI Stack
-+ AI Engineering vs ML Enginering
-+ AI Enginnering vs Full-Stack Engineering
++ AI Engineering vs ML Engineering
++ AI Engineering vs Full-Stack Engineering
 
 ---
 ## Three Layers of the AI Stack
@@ -469,8 +469,8 @@ Illustration from ["The Rise of the AI Engineer" (Wang, 2023)](https://www.laten
 ---
 ## AI Engineering vs Full-Stack Engineering
 
-+ Focus on application development, espcially on interfaces, brings AI closer to full-stack engineering. 
-+ ML engineering is Python-centric. There is an emergence of JavaScript APIs for AI: LangChain.js, Transfomer.js, OpenAI's Node library, Vercel's AI SDK.
++ Focus on application development, especially on interfaces, brings AI closer to full-stack engineering. 
++ ML engineering is Python-centric. There is an emergence of JavaScript APIs for AI: LangChain.js, Transformer.js, OpenAI's Node library, Vercel's AI SDK.
 ---
 
 ## AI Engineering and Application Development
@@ -493,4 +493,4 @@ Illustration from ["The Rise of the AI Engineer" (Wang, 2023)](https://www.laten
 - Guy, Oliver. From discussion to deployment: 4 key lessons in generative AI. Microsoft Blog, October 23, 2023 ([URL](https://www.microsoft.com/en-us/industry/blog/retail/2023/10/23/from-discussion-to-deployment-4-key-lessons-in-generative-ai/)).
 - Huyen, Chip. Designing machine learning systems. O'Reilly Media, Inc., 2022 
 - Smith, Noah and Roon. Generative AI: autocomplete for everything. Dec. 1, 2022 ([URL](https://www.noahpinion.blog/p/generative-ai-autocomplete-for-everything))
-- Wang, Shawn. The Rise of the AI Engineer, 2003 ([URL](https://www.latent.space/p/ai-engineer))
+- Wang, Shawn. The Rise of the AI Engineer, 2023 ([URL](https://www.latent.space/p/ai-engineer))
