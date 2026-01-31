@@ -128,7 +128,7 @@ Participants are encouraged to engage actively during the learning module. The k
 
 |Type |Date        |Topic                             |
 |-----|------------|----------------------------------|
-|Live| Feb. 02 | Introduction to Foundation Models|
+|Live| Feb. 03 | Introduction to Foundation Models|
 |Live| Feb. 05 | Evaluating Foundation Models |
 |Work| Feb. 06 | Work Period |
 |Live| Feb. 10 | Prompt Engineering |
