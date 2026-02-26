@@ -162,16 +162,16 @@ Participants are encouraged to engage actively during the learning module. The k
 |Live| Feb. 11 | Introduction to Foundation Models |
 |Live| Feb. 12 | Evaluating Foundation Models |
 |Work| Feb. 13 | Work Period |
-|Deadline| Feb. 16 | Assignment 1 Due |
 |Live| Feb. 17 | Prompt Engineering |
 |Live| Feb. 18 | Retrieval Augmented Generation |
 |Live| Feb. 19 | Agents |
 |Work| Feb. 20 | Work Period |
-|Deadline| Feb. 24 | Assignment 2 Due |
+|Deadline| Feb. 22 | Assignment 1 Due |
 |Live| Feb. 24 | Case Study |
 |Live| Feb. 25 | Fine Tuning |
 |Live| Feb. 26 | Dataset Engineering |
 |Work| Feb. 27 | Work Period |
+|Deadline| Mar. 1 | Assignment 2 Due |
 
 ### Requirements
 * Participants are not expected to have any coding experience; the learning content has been designed for beginners.
