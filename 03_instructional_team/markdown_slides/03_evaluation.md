@@ -1,7 +1,6 @@
 ---
 marp: true
 theme: dsi_certificates_theme
-_class: invert
 paginate: true
 ---
 
@@ -231,7 +230,7 @@ $$
 
 ## Testing Functional Correctness with HumanEval
 
-![bg contain right:50%](./images/03_human_eval.png)
+![bg right:50% w:500](./images/03_human_eval.png)
 
 + A benchmark problem comes with a set of test cases. Each test case consists of a scenario the code should run and the expected output for that scenario.
 + Generated code is shown with yellow background.
@@ -875,8 +874,8 @@ Code generation capability | pass@1 |  HumanEval | > 90% | >95%
 
 ## Open vs Closed Models: Performance
 
-![h:425px center](./images/03_open_vs_closed.png)
-<center> Performance comparison of closed-source and open-weight large language models on the MMLU (5-shot) benchmark. (Riedemann et al, 2024)</center>
+![bg right:60% w:700](./images/03_open_vs_closed.png)
+Performance comparison of closed-source and open-weight large language models on the MMLU (5-shot) benchmark. (Riedemann et al, 2024)
 
 ---
 
@@ -1011,10 +1010,3 @@ Code generation capability | pass@1 |  HumanEval | > 90% | >95%
 - Wang, Zekun Moore,  et al. "Rolellm: Benchmarking, eliciting, and enhancing role-playing abilities of large language models." [arXiv:2310.00746](https://arxiv.org/abs/2310.00746) (2023).
 - Wei, Jerry et al. "Long-form factuality in large language models." Advances in Neural Information Processing Systems 37 (2024): 80756-80827. [arXiv:2403.18802](https://arxiv.org/abs/2403.18802)
 - Zhou, Jeffrey et al. "Instruction-following evaluation for large language models."  [arXiv:2311.07911](https://arxiv.org/abs/2311.07911) (2023).
-
-
----
-
-
-
-
