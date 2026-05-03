@@ -1,9 +1,7 @@
 import os
 import json
-import sys
-from dotenv import load_dotenv
 
-# Load environment variables
+from dotenv import load_dotenv
 load_dotenv("05_src/.secrets")
 load_dotenv("05_src/.env")
 
@@ -11,12 +9,10 @@ import chromadb
 from chromadb.utils.embedding_functions import OpenAIEmbeddingFunction
 
 # Paths
-
 DOCUMENTS_DIR = "05_src/documents"
 CHROMA_DIR = "05_src/assignment_chatbotai/chroma_db"
 COLLECTION_NAME = "pitchfork_reviews"
 
-#  Helper: load a jsonl file
 
 def load_jsonl(filepath: str) -> list[dict]:
     """Load a JSON lines file and return a list of dicts."""
@@ -28,11 +24,11 @@ def load_jsonl(filepath: str) -> list[dict]:
                 data.append(json.loads(line))
     return data
 
-# Load source data 
 
+# Load source data
 print("Loading Pitchfork data files...")
 
-content = load_jsonl(os.path.join(DOCUMENTS_DIR, "pitchfork_content.jsonl"))
+content = load_jsonl(os.path.join(DOCUMENTS_DIR, "pitchfork_content_small.jsonl"))
 reviews = load_jsonl(os.path.join(DOCUMENTS_DIR, "pitchfork_reviews.jsonl"))
 genres  = load_jsonl(os.path.join(DOCUMENTS_DIR, "pitchfork_genres.jsonl"))
 
@@ -40,26 +36,21 @@ print(f"  Content records : {len(content)}")
 print(f"  Review records  : {len(reviews)}")
 print(f"  Genre records   : {len(genres)}")
 
-#  Build lookup dictionaries 
-
-# Map reviewid, review metadata
+# Build lookup dictionaries
 review_lookup = {str(r["reviewid"]): r for r in reviews}
 
-# Map reviewid, genre 
 genre_lookup = {}
 for g in genres:
     rid = str(g["reviewid"])
     if rid not in genre_lookup:
         genre_lookup[rid] = g.get("genre", "unknown")
 
-#  Prepare documents for ChromaDB 
-
+# Prepare documents
 print("\nPreparing documents...")
 
 documents = []
 metadatas = []
 ids = []
-
 seen_ids = set()
 
 for item in content:
@@ -76,17 +67,15 @@ for item in content:
         continue
     seen_ids.add(doc_id)
 
-    # Get metadata from review lookup
+    # Get metadata
     review = review_lookup.get(reviewid, {})
     title  = review.get("title", "Unknown")
     artist = review.get("artist", "Unknown")
     score  = review.get("score", 0.0)
     genre  = genre_lookup.get(reviewid, "unknown")
 
-    # Shorten content to 1000 characters for within token limits
-    text_chunk = text[:1000].strip()
-
-    documents.append(text_chunk)
+    # Truncate to 1000 characters
+    documents.append(text[:1000].strip())
     metadatas.append({
         "reviewid": reviewid,
         "title"   : str(title),
@@ -99,7 +88,6 @@ for item in content:
 print(f"  Documents prepared: {len(documents)}")
 
 # Set up ChromaDB with file persistence
-
 print(f"\nSetting up ChromaDB at: {CHROMA_DIR}")
 os.makedirs(CHROMA_DIR, exist_ok=True)
 
@@ -111,14 +99,8 @@ embedding_function = OpenAIEmbeddingFunction(
     default_headers={"x-api-key": os.getenv("API_GATEWAY_KEY")},
 )
 
-# Persistent client. saves to disk
+# Create persistent client and collection
 client = chromadb.PersistentClient(path=CHROMA_DIR)
-
-# Delete existing collection if rebuilding
-existing = [c.name for c in client.list_collections()]
-if COLLECTION_NAME in existing:
-    print(f"  Deleting existing collection: {COLLECTION_NAME}")
-    client.delete_collection(COLLECTION_NAME)
 
 collection = client.create_collection(
     name=COLLECTION_NAME,
@@ -127,31 +109,27 @@ collection = client.create_collection(
 
 print(f"  Collection created: {COLLECTION_NAME}")
 
-# De-duplicate by ID before adding
+# Deduplicate by ID before adding
 seen = {}
 for doc, meta, id_ in zip(documents, metadatas, ids):
     if id_ not in seen:
         seen[id_] = (doc, meta)
 
-final_ids = list(seen.keys())
-final_docs = [seen[i][0] for i in final_ids]
+final_ids   = list(seen.keys())
+final_docs  = [seen[i][0] for i in final_ids]
 final_metas = [seen[i][1] for i in final_ids]
 
+# Add documents in batches
 BATCH_SIZE = 500
 total = len(final_ids)
 print(f"\nAdding {total} documents in batches of {BATCH_SIZE}...")
 
 for i in range(0, total, BATCH_SIZE):
-    batch_docs  = final_docs[i : i + BATCH_SIZE]
-    batch_meta  = final_metas[i : i + BATCH_SIZE]
-    batch_ids   = final_ids[i : i + BATCH_SIZE]
-
     collection.add(
-        documents=batch_docs,
-        metadatas=batch_meta,
-        ids=batch_ids,
+        documents=final_docs[i : i + BATCH_SIZE],
+        metadatas=final_metas[i : i + BATCH_SIZE],
+        ids=final_ids[i : i + BATCH_SIZE],
     )
-
     end = min(i + BATCH_SIZE, total)
     print(f"  Added {end}/{total} documents")
 
